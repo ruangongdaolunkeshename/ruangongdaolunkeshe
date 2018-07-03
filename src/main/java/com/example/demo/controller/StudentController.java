@@ -26,6 +26,7 @@ public class StudentController {
         List<Student> list = studentService.getAllStudent();
         request.setAttribute("students",list);
         // aaaaaa
+        
         return "student";
     }
 
