@@ -10,5 +10,6 @@ public class SampleApplication {
     {
         SpringApplication.run(SampleApplication.class, args);
         System.out.println("it's just a text.");
+
     }
 }
