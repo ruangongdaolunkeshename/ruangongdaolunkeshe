@@ -9,7 +9,6 @@ public class SampleApplication {
     public static void main(String[] args)
     {
         SpringApplication.run(SampleApplication.class, args);
-        System.out.println("it's just a text.");
-
+        System.out.println("it's just a sign test.");
     }
 }
