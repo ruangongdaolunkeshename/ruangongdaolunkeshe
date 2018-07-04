@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>mainframe</title>
+    <style type="text/css">
+        #登录注册 {
+        }
+        body {
+            margin-left: 5px;
+            margin-top: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .一级标题 {
+            font-family: "微软雅黑 Light";
+            font-weight: bold;
+            font-size: x-large;
+        }
+        .文字 {
+            font-size: 18px;
+            font-family: "微软雅黑 Light";
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div align="center">
+    <div id="登录注册">
+        <label for="username"></label>
+        <input type="text" name="用户名" id="username" value="请输入用户名"/>
+
+        <label for="password"></label>
+        <input type="password" name="密码" id="password" value="请输入密码"/>
+
+        <button onclick="ShowMessage()">登录</button>
+        <a href="Register.html"><button>注册</button></a>
+
+        <script>
+            function ShowMessage(){
+
+                var x=document.getElementById("password").value;
+                if(x==password){
+                    alert('登陆失败');
+                }
+                else{
+                    window.location.href='main/操作主界面.html';
+                }
+            }
+        </script>
+
+    </div>
+    <div>
+        <p class="一级标题">规范列表</p>
+        <div>
+            <p class="文字">&nbsp;&nbsp;&nbsp;&nbsp; 关于草案评审的工作规范·····························································2017/06/01</p>
+            <p class="文字">&nbsp;&nbsp;&nbsp;&nbsp; 管理系统申请资格规范·································································2017/05/30</p>
+            <p class="文字">&nbsp;&nbsp;&nbsp;&nbsp; 提案草案审批规范·········································································2017/05/20</p>
+            <p class="文字">&nbsp;&nbsp;&nbsp;&nbsp; 成立分组规范·················································································2017/05/19</p>
+            <p class="文字">&nbsp;&nbsp;&nbsp;&nbsp; 草案详情填写规范·········································································2017/05/15</p>
+            <p class="文字">&nbsp;&nbsp;&nbsp;&nbsp; 数据管理规范·················································································2017/05/10</p>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+    <p>&nbsp;</p>
+</div>
+
+</body>
+</html>
