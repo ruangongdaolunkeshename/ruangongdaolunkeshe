@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Student {
 
-    private Integer id;
+    private String id;
     private String sex;
     private String name;
     private String birthday;
@@ -23,7 +23,7 @@ public class Student {
     //委员会
     private String committee;
 
-    public Integer id(){
+    public String id(){
         return id;
     }
     public String sex(){
@@ -50,7 +50,7 @@ public class Student {
     public String committee(){
         return committee;
     }
-    public void setid(Integer id){
+    public void setid(String id){
         this.id=id;
     }
     public void setsex(String sex){
