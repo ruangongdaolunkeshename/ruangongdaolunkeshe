@@ -11,33 +11,71 @@ import lombok.Data;
 public class Student {
 
     private Integer id;
-    private String no;
+    private String sex;
     private String name;
-    private Double score;
+    private String birthday;
+    private String address;
+    private String telephone;
+    //推荐人
+    private String people;
+    //行业分会
+    private String branch;
+    //委员会
+    private String committee;
 
-    public Integer getid(){
+    public Integer id(){
         return id;
     }
-    public String no(){
-        return no;
+    public String sex(){
+        return sex;
     }
     public String name(){
         return name;
     }
-    public Double score(){
-        return score;
+    public String birthday(){
+        return birthday;
     }
-    public void getid(Integer id){
+    public String address(){
+        return address;
+    }
+    public String telephone(){
+        return telephone;
+    }
+    public String people(){
+        return people;
+    }
+    public String branch(){
+        return branch;
+    }
+    public String committee(){
+        return committee;
+    }
+    public void setid(Integer id){
         this.id=id;
     }
-    public void getno(String no){
-        this.no=no;
+    public void setsex(String sex){
+        this.sex=sex;
     }
-    public void getname(String name){
+    public void setname(String name){
         this.name=name;
     }
-    public void getscore(Double score){
-        this.score=score;
+    public void setbirthday(String birthday){
+        this.birthday=birthday;
+    }
+    public void setaddress(String address){
+        this.address=address;
+    }
+    public void settelephone(String telephone){
+        this.telephone=telephone;
+    }
+    public void setpeople(String people){
+        this.people=people;
+    }
+    public void setbranch(String branch){
+        this.branch=branch;
+    }
+    public void setcommitte(String committee){
+        this.committee=committee;
     }
 
 }
