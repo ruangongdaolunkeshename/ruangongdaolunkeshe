@@ -14,7 +14,7 @@ import java.util.UUID;
 **/
 @Mapper
 public interface StudentDAO {
-    public static String getid(){
+    public static String getusername(){
         UUID uuid=UUID.randomUUID();
         return uuid.toString().replace("-","");
     }

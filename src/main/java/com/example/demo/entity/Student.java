@@ -10,7 +10,8 @@ import lombok.Data;
 @Data
 public class Student {
 
-    private String id;
+    private String password;
+    private String username;
     private String sex;
     private String name;
     private String birthday;
@@ -22,9 +23,10 @@ public class Student {
     private String branch;
     //委员会
     private String committee;
+    private  int flat=0;
 
-    public String id(){
-        return id;
+    public String username(){
+        return username;
     }
     public String sex(){
         return sex;
@@ -50,8 +52,21 @@ public class Student {
     public String committee(){
         return committee;
     }
-    public void setid(String id){
-        this.id=id;
+    public void setid(String username){
+        this.username=username;
+    }
+    public int flat(){
+        return flat;
+    }
+    public String password(){
+        return password;
+    }
+
+    public void setpassword(String password){
+        this.password=password;
+    }
+    public void setflat(int flat){
+        this.flat=flat;
     }
     public void setsex(String sex){
         this.sex=sex;

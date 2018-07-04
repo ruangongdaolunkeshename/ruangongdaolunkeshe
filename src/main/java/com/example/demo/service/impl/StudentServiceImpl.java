@@ -31,7 +31,7 @@ public abstract class StudentServiceImpl implements StudentService{
         for(Map<String,Object> map:list){
             Student student=new Student();
 
-            student.setid(map.get("id").toString());
+            student.setid(map.get("username").toString());
             student.setsex(map.get("sex").toString());
             student.setname(map.get("name").toString());
             student.setaddress(null==map.get("address")?"":map.get("address").toString());
@@ -40,24 +40,26 @@ public abstract class StudentServiceImpl implements StudentService{
             student.setpeople(null==map.get("people")?"":map.get("people").toString());
             student.setbranch(null==map.get("branch")?"":map.get("branch").toString());
             student.setcommitte(null==map.get("committee")?"":map.get("committee").toString());
+            student.setpassword(map.get("password").toString());
+            student.setflat(Integer.valueOf(map.get("flat").toString()));
         }
         return studentList;
     }
 
     @Override
     public Student saveStudent(Student student){
-        student.setid(StudentDAO.getid());
-        String sql="insert into student(id,sex,name,address,birthday,telephone,people,branch,committee) values(?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,new Object[]{student.id(),student.sex(),student.name(), student.address(), student.birthday(), student.telephone(), student.people(), student.branch(), student.committee()});
-        return getStudentid(student.id());
+        student.setid(StudentDAO.getusername());
+        String sql="insert into student(username,sex,name,address,birthday,telephone,people,branch,committee,password,flat) values(?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,new Object[]{student.username(),student.sex(),student.name(), student.address(), student.birthday(), student.telephone(), student.people(), student.branch(), student.committee(), student.password(), student.flat()});
+        return getStudentusername(student.username());
     }
 
     @Override
-    public Student getStudentid(String id){
-        Map<String,Object> map=jdbcTemplate.queryForMap("SELECT * FROM student where id = ?",id);
+    public Student getStudentusername(String username){
+        Map<String,Object> map=jdbcTemplate.queryForMap("SELECT * FROM student where username = ?",username);
         if(null!=map&&map.size()>0){
             Student student=new Student();
-            student.setid(map.get("id").toString());
+            student.setid(map.get("username").toString());
             student.setsex(map.get("sex").toString());
             student.setname(map.get("name").toString());
             student.setaddress(null==map.get("address")?"":map.get("address").toString());
@@ -66,6 +68,8 @@ public abstract class StudentServiceImpl implements StudentService{
             student.setpeople(null==map.get("people")?"":map.get("people").toString());
             student.setbranch(null==map.get("branch")?"":map.get("branch").toString());
             student.setcommitte(null==map.get("committee")?"":map.get("committee").toString());
+            student.setpassword(map.get("password").toString());
+            student.setflat(Integer.valueOf(map.get("flat").toString()));
             return student;
         }
         return null;
@@ -73,15 +77,15 @@ public abstract class StudentServiceImpl implements StudentService{
 
     @Override
     public Student updateStudent(Student student){
-        String sql="update student set sex=?,name=?,address=?,birthday=?,telephone=?,people=?,branch=?,committee=?";
-        jdbcTemplate.update(sql,new Object[]{student.sex(),student.name(), student.address(), student.birthday(), student.telephone(), student.people(), student.branch(), student.committee()});
-        return getStudentid(student.id());
+        String sql="update student set sex=?,name=?,address=?,birthday=?,telephone=?,people=?,branch=?,committee=?,password=?,flat=?";
+        jdbcTemplate.update(sql,new Object[]{student.sex(),student.name(), student.address(), student.birthday(), student.telephone(), student.people(), student.branch(), student.committee(), student.password(), student.flat()});
+        return getStudentusername(student.username());
     }
 
     @Override
-    public void deleteStudent(String id){
-        String sql="delete from student where id=?";
-        jdbcTemplate.update(sql,new Object[]{id});
+    public void deleteStudent(String username){
+        String sql="delete from student where username=?";
+        jdbcTemplate.update(sql,new Object[]{username});
     }
 
 }

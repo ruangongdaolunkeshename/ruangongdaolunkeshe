@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
-  `id` varchar(100) CHARACTER SET utf8 DEFAULT '121212' COMMENT 'id',
+  `username` varchar(100) CHARACTER SET utf8 DEFAULT '121212' COMMENT 'username',
   `sex` varchar(100) CHARACTER SET utf8 DEFAULT 'man' COMMENT '性别',
   `name` varchar(100) CHARACTER SET utf8 DEFAULT 'Tom' COMMENT '姓名',
    `address` varchar(100) CHARACTER SET utf8 DEFAULT 'BJ-Chaoyang' COMMENT '地址',
@@ -31,14 +31,16 @@ CREATE TABLE `student` (
    `people` varchar(100) CHARACTER SET utf8 DEFAULT 'Tom' COMMENT '推荐人',
    `branch` varchar(100) CHARACTER SET utf8 DEFAULT 'A-part' COMMENT '行业分会',
    `committe` varchar(100) CHARACTER SET utf8 DEFAULT 'ABC' COMMENT '委员会',
-  PRIMARY KEY (`id`)
+   'password' varchar(100)CHARACTER SET  utf8 DEFAULT  '123456' COMMENT '密码',
+   'flat' Integer(2) CHARACTER SET utf8 DEFAULT '0' COMMENT '级别',
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='注册表';
 
 -- ----------------------------
 --  Records of `student`
 -- ----------------------------
 BEGIN;
-INSERT INTO `student` VALUES ('1', 'man', '张三', 'bj-chaoyang','1997-1-1','18511111111','jack','A-part','ABC'), ('2', 'man', '李四', bj-chaoyang','1997-10-2','18522222222','jack,'C-part','ABC');
+INSERT INTO `student` VALUES ('1', 'man', '张三', 'bj-chaoyang','1997-1-1','18511111111','jack','A-part','ABC','123456','0'), ('2', 'man', '李四', 'bj-chaoyang','1997-10-2','18522222222','jack','C-part','ABC','123456','0');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
