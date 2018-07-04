@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
 * @description 
@@ -13,8 +14,8 @@ import java.util.List;
 **/
 @Mapper
 public interface StudentDAO {
-
-    @Select(value = "SELECT * FROM student")
-    List<Student> getAllStudent();
-
+    public static String getid(){
+        UUID uuid=UUID.randomUUID();
+        return uuid.toString().replace("-","");
+    }
 }
