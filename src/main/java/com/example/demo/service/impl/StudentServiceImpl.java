@@ -29,7 +29,8 @@ public class StudentServiceImpl implements StudentService{
     public Boolean saveStudent(Student student){
         if(null==student)
             return false;
-        studentDAO.insert(student);
+        else
+            studentDAO.insert(student);
         return true;
     }
 
