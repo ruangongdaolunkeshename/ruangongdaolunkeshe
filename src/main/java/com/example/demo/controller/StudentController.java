@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 * @create 2018-07-01 
 **/
 @Controller
+
 public class StudentController {
 
     @Autowired
@@ -25,8 +27,6 @@ public class StudentController {
     public String getAllStudent(HttpServletRequest request){
         List<Student> list = studentService.getAllStudent();
         request.setAttribute("students",list);
-        // aaaaaa
-        
         return "student";
     }
 

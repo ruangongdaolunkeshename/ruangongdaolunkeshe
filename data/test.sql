@@ -1,4 +1,4 @@
-/*
+﻿/*
  Navicat Premium Data Transfer
 
  Source Server         : LocalHost
@@ -21,20 +21,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 --  Table structure for `student`
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student` (
-  `username` varchar(100) CHARACTER SET utf8 DEFAULT '121212' COMMENT 'username',
-  `sex` varchar(100) CHARACTER SET utf8 DEFAULT 'man' COMMENT '性别',
-  `name` varchar(100) CHARACTER SET utf8 DEFAULT 'Tom' COMMENT '姓名',
-   `address` varchar(100) CHARACTER SET utf8 DEFAULT 'BJ-Chaoyang' COMMENT '地址',
-   `birthday` varchar(100) CHARACTER SET utf8 DEFAULT '1997-1-1' COMMENT '生日',
-   `telephone` varchar(100) CHARACTER SET utf8 DEFAULT '18511111111' COMMENT '手机',
-   `people` varchar(100) CHARACTER SET utf8 DEFAULT 'Tom' COMMENT '推荐人',
-   `branch` varchar(100) CHARACTER SET utf8 DEFAULT 'A-part' COMMENT '行业分会',
-   `committe` varchar(100) CHARACTER SET utf8 DEFAULT 'ABC' COMMENT '委员会',
-   'password' varchar(100)CHARACTER SET  utf8 DEFAULT  '123456' COMMENT '密码',
-   'flat' Integer(2) CHARACTER SET utf8 DEFAULT '0' COMMENT '级别',
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='注册表';
+CREATE TABLE `student` (`username` varchar(100) NOT NULL ,`sex` varchar(100) NOT NULL ,`name` varchar(100) NOT NULL ,`address` varchar(100),`birthday` varchar(100),`telephone` varchar(100),`people` varchar(100) NOT NULL ,`branch` varchar(100),`committe` varchar(100), `password` varchar(100) NOT NULL ,`flat` Integer(2) DEFAULT '0');
 
 -- ----------------------------
 --  Records of `student`
