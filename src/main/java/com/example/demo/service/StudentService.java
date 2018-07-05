@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface StudentService {
     List<Student> getAllStudent();
-    Student saveStudent(Student student);
+    Boolean saveStudent(Student student);
     Student getStudentusername(String username);
-    Student updateStudent(Student student);
+    int updateStudentlevel(Student student, int flat);
     void deleteStudent(String username);
 }

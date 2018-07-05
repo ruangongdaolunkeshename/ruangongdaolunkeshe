@@ -1,8 +1,7 @@
 package com.example.demo.dao;
 
 import com.example.demo.entity.Student;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,8 +13,19 @@ import java.util.UUID;
 **/
 @Mapper
 public interface StudentDAO {
-    public static String getusername(){
-        UUID uuid=UUID.randomUUID();
-        return uuid.toString().replace("-","");
-    }
+    @Select(value="SELECT * FROM student")
+    List<Student> getAllStudent();
+
+    @Insert(value="INSERT INTO student(student.`password`,student.`username`,student.`sex`,student.`name`,student.`birthday`,student.`address`,student.`telephone`,student.`people`,student.`branch`,student.`committee`,student.`flat`)\n" + "VALUE(#{password},#{username},#{sex},#{name},#{birthday},#{address},#{telephone},#{people},#{branch},#{committee},#{flat})")
+    int insert(Student student);
+
+    @Update(value="UPDATE student SET student.flat=#{flat} WHERE student.username=#{username}")
+    int updatelevel(String username, int flat);
+
+    @Select(value="SELECT * FROM student WHERE student.username=#{username}")
+    Student search(String username);
+
+    @Delete(value="DELETE FROM student WHERE student.username=#{username}")
+    void delete(String username);
+
 }

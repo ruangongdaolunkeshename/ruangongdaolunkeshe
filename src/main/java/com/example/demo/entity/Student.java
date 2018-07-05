@@ -52,7 +52,7 @@ public class Student {
     public String committee(){
         return committee;
     }
-    public void setid(String username){
+    public void setusername(String username){
         this.username=username;
     }
     public int flat(){
