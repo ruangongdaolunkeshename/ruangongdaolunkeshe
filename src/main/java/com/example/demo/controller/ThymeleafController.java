@@ -1,10 +1,15 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import com.example.demo.entity.Student;
+import com.example.demo.service.StudentService;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,34 +18,29 @@ import javax.servlet.http.HttpServletResponse;
      * @author gacl
      * 获取客户端通过Form表单提交上来的参数
      */
-
+    @RestController
     public class ThymeleafController extends HttpServlet {
 
-        /**
-         * 会传用户名，通过dopost返回密码，controller类不做判断(如果用户名不存在返回-1)
-         */
-        public void doGet(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
-            //客户端是以UTF-8编码提交表单数据的，所以需要设置服务器端以UTF-8的编码进行接收，否则对于中文数据就会产生乱码
-            request.setCharacterEncoding("UTF-8");
+        @Autowired
+        private StudentService studentService;
 
-            /**
-             * 用户名(文本框)：<input type="text" name="username" value="请输入用户名">
-             */
-            String username = request.getParameter("username");//获取填写的用户名
-            /**
-             * 密&nbsp;&nbsp;码(密码框)：<input type="password" name="userpass" value="请输入密码">
-             */
-           // String userpass = request.getParameter("userpass");//获取填写的密码
+        @RequestMapping(value = "/stu/WholeFrame", method= RequestMethod.GET)
+        public String login(@ModelAttribute("password") Student student) {
+            if (studentService.compareStudentpassword(student) == 1) ;
+            return student.username()+"，是他吧是他吧";
         }
 
-
-        @RequestMapping(value = "/demo/doPost")
-        public String doPost(HttpServletRequest request,int password){
-
-            request.setAttribute("password",password);   //sta标记登录是否成功
-
-            return "IoMain";
+        @RequestMapping(value = "/stu/insert" , method=RequestMethod.GET)
+        public String insert(@ModelAttribute("student") Student student){
+            studentService.saveStudent(student);
+            return "不知所云";
         }
+
+        @RequestMapping(value = "/stu/levelchange", method = RequestMethod.GET)
+        public String levelchange(@ModelAttribute("student") Student student){
+            studentService.updateStudentlevel(student,student.flat());
+            return "恶魔妹妹喵喵喵";
+        }
+
     }
 

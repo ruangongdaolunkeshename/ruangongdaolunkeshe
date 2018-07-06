@@ -35,8 +35,10 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student getStudentusername(String username){
-        return studentDAO.search(username);
+    public int compareStudentpassword(Student student){
+        if(student.password()==studentDAO.search(student.username()))
+            return 1;
+        return 0;
     }
 
     @Override

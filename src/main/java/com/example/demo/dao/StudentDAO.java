@@ -22,8 +22,8 @@ public interface StudentDAO {
     @Update(value="UPDATE student SET student.flat=#{flat} WHERE student.username=#{username}")
     int updatelevel(String username, int flat);
 
-    @Select(value="SELECT * FROM student WHERE student.username=#{username}")
-    Student search(String username);
+    @Select(value="SELECT student.password FROM student WHERE student.username=#{username}")
+    String search(String username);
 
     @Delete(value="DELETE FROM student WHERE student.username=#{username}")
     void delete(String username);

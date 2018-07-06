@@ -13,7 +13,7 @@ import java.util.List;
 public interface StudentService {
     List<Student> getAllStudent();
     Boolean saveStudent(Student student);
-    Student getStudentusername(String username);
+    int compareStudentpassword(Student student);
     int updateStudentlevel(Student student, int flat);
     void deleteStudent(String username);
 }
