@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+.title {
+	background-color: #6C0;
+	font-size: 36px;
+	font-weight: bold;
+	font-family: "微软雅黑 Light";
+}
+.aaaa {
+	position: relative;
+	top: auto;
+}
+</style></head>
+
+
+<body>
+<center>
+<div class="title">提案编制</div>
+  <div aligh="center">
+    <form id="iform" th:action="@{/stu/insert}" th:method="get" th:object="${proposal}">
+      <table>
+        <tr>
+          <p>提案名称
+            <label for="textfield2"></label>
+            <input type="text" name="textfield" id="textfield2" th:field="*{name}"/>
+          </p>
+        </tr>
+        <tr>
+          <td>提案内容</td>
+          <td><textarea name="textarea" id="textarea" cols="45" rows="10" th:field="*{content}"></textarea></td>
+          <pre>&nbsp;</pre>
+        </tr>
+      </table>
+    </form>
+</div>
+
+  <form id="form2" name="form2" method="post" action="">
+    <p>
+      <input type="radio" name="radio" id="radio" value="radio" />
+      <label for="radio"></label>
+      我已阅读提案建议要求
+  </p>
+    <p>
+      <input type="submit" name="打印" id="打印" value="打印" />
+      &nbsp; 
+      &nbsp; 
+      <input type="submit" name="保存" id="保存" value="保存" />
+      &nbsp; &nbsp; 
+      <input type="submit" name="提交" id="提交" value="提交" />
+    </p>
+  </form>
+  <p>&nbsp;</p>
+  <table width="676" height="196" border="1">
+    <tr>
+      <th width="78" scope="col"><form id="form3" name="form3" method="post" action="">
+        <input type="checkbox" name="checkbox" id="checkbox" />
+        全选
+        <label for="checkbox"></label>
+      </form></th>
+      <th width="71" scope="col">提案ID</th>
+      <th width="194" scope="col">提案名称</th>
+      <th width="160" scope="col">提交时间</th>
+      <th width="139" scope="col">提案状态</th>
+    </tr>
+    <tr>
+      <th scope="row"><form id="form4" name="form4" method="post" action="">
+        <input type="checkbox" name="checkbox2" id="checkbox2" />
+        <label for="checkbox2"></label>
+      </form></th>
+      <td>1</td>
+      <td>xxxxxx</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <th scope="row"><form id="form5" name="form5" method="post" action="">
+        <input type="checkbox" name="checkbox3" id="checkbox3" />
+        <label for="checkbox3"></label>
+      </form></th>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <form id="form6" name="form6" method="post" action="">
+    &nbsp;
+    <input type="submit" name="button" id="button" value="打印" />
+    &nbsp;
+  &nbsp;
+  <strong><a href="Operation_main_interface.html"><em>取消 </em></a></strong><a href="Operation_main_interface.html"><em></em></a>
+  </form>
+  <p>&nbsp;</p>
+  <form id="form1" name="form1" method="post" action="">
+    <label for="textarea"></label>
+  </form>
+</center>
+</body>
+</html>

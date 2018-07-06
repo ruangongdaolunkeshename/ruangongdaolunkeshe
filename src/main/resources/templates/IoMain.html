@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>mainframe</title>
@@ -38,15 +38,15 @@
         <button onclick="ShowMessage()">登录</button>
         <a href="Register.html"><button>注册</button></a>
 
-        <script>
+        <script th:inline="javascript">
             function ShowMessage(){
-
+                var ps=[[$(password)]]
                 var x=document.getElementById("password").value;
-                if(x==password){
-                    alert('登陆失败');
+                if(x==ps){
+                    window.location.href='main/Operation_main_interface.html';
                 }
                 else{
-                    window.location.href='main/操作主界面.html';
+                    alert('登陆失败');
                 }
             }
         </script>
