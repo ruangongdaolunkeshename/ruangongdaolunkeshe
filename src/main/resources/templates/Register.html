@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
@@ -8,40 +8,53 @@
 <body>
 <center>
 <div>入会申请</div>
-<p>姓名
-  <input type="text" name="姓名" id="姓名" />
-  <label for="姓名"></label>
-</p>
-<p>性别
-  <label for="textfield"></label>
-  <input type="text" name="textfield" id="textfield" />
-</p>
-<p>出生日期
-  <label for="出生日期"></label>
-  <input type="text" name="出生日期" id="出生日期" />
-</p>
-<p>家庭住址
-  <label for="家庭住址"></label>
-  <input type="text" name="家庭住址" id="家庭住址" />
-</p>
-<p>联系方式
-  <label for="联系方式"></label>
-  <input type="text" name="联系方式" id="联系方式" />
-</p>
-<p>推荐人
-  <label for="推荐人"></label>
-  <input type="text" name="推荐人" id="推荐人" />
-</p>
-<p>行业分会
-  <label for="行业分会"></label>
-  <select name="行业分会" id="行业分会">
-  </select>
-</p>
-<p>专委会
-  <label for="专委会"></label>
-  <select name="专委会" id="专委会">
-  </select>
-</p>
+  <table>
+  <form id="iform" th:action="@{/stu/insert}" th:method="get" th:object="${student}">
+    <tr>
+      <th>
+      <label>昵称</label>
+    <input type="text" th:field="*{username}"/>
+      </th>
+    </tr>
+    <tr>
+      <th>
+    <label>学号</label>
+    <input type="text" th:field="*{password}"/>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <label>昵称</label>
+        <input type="text" th:field="*{sex}"/>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <label>昵称</label>
+        <input type="text" th:field="*{name}"/>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <label>昵称</label>
+        <input type="text" th:field="*{birthday}"/>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <label>昵称</label>
+        <input type="text" th:field="*{address}"/>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <label>昵称</label>
+        <input type="text" th:field="*{telephone}"/>
+      </th>
+    </tr>
+  </form>
+  </table>
+
 <p>&nbsp;</p>
 <form id="form1" name="form1" method="post" action="">
   <input type="submit" name="提交" id="提交" value="提交" />
