@@ -48,9 +48,8 @@ import java.util.List;
 
         @RequestMapping(value = "/stu/changestudent", method = RequestMethod.GET)
         public String changestudent(@ModelAttribute("student") Student student) {
-            System.out.println(student.username()+" "+student.flat());
             studentService.updateStudent(student);
-            return "恶魔妹妹喵喵喵";
+            return "change successful";
         }
 
         @RequestMapping(value = "/stu/delete", method = RequestMethod.GET)
