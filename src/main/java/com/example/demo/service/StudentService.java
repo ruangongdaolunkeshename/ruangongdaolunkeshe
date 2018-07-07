@@ -13,7 +13,9 @@ import java.util.List;
 public interface StudentService {
     List<Student> getAllStudent();
     Boolean saveStudent(Student student);
+    Boolean searchstudent(String username);
     int compareStudentpassword(Student student);
-    int updateStudentlevel(Student student, int flat);
+    void updateStudent(Student student);
     void deleteStudent(String username);
+    int searchflat(String username);
 }

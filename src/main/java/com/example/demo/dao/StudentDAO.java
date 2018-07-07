@@ -19,11 +19,11 @@ public interface StudentDAO {
     @Insert(value="INSERT INTO student(student.`password`,student.`username`,student.`sex`,student.`name`,student.`birthday`,student.`address`,student.`telephone`,student.`people`,student.`branch`,student.`committee`,student.`flat`)\n" + "VALUE(#{password},#{username},#{sex},#{name},#{birthday},#{address},#{telephone},#{people},#{branch},#{committee},#{flat})")
     int insert(Student student);
 
-    @Update(value="UPDATE student SET student.flat=#{flat} WHERE student.username=#{username}")
-    int updatelevel(String username, int flat);
+    @Select(value="SELECT * FROM student WHERE student.username=#{username}")
+    Student search(String username);
 
-    @Select(value="SELECT student.password FROM student WHERE student.username=#{username}")
-    String search(String username);
+    @Select(value="SELECT student.flat FROM student WHERE student.username=#{username}")
+    Integer searchflat(String username);
 
     @Delete(value="DELETE FROM student WHERE student.username=#{username}")
     void delete(String username);

@@ -37,7 +37,7 @@
             </h>
         </div>
         <div align="center" style="font-weight: bold" >
-            <form action="#" th:action="@{/stu/WholeFrame}" method="get" th:object="${student}">
+            <form th:action="@{/stu/WholeFrame}" method="get" th:object="${student}">
                 <br><br><br><br>
                 <label for="username">用户名</label>
                 <input type="text" id="username" th:field="*{username}"/>
@@ -45,7 +45,7 @@
                 <label for="password">&nbsp;&nbsp;密码&nbsp;</label>
                 <input type="password" id="password" th:field="*{password}"/>
                 <br><br>
-                <input type="button" value="&nbsp;&nbsp;登录&nbsp;&nbsp;"/>
+                <input type="submit" value="&nbsp;&nbsp;登录&nbsp;&nbsp;"/>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="Register.html">
                     <button type="button">&nbsp;&nbsp;注册&nbsp;&nbsp;</button>

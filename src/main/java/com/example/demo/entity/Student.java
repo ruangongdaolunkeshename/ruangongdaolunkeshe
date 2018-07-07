@@ -23,7 +23,9 @@ public class Student {
     private String branch;
     //委员会
     private String committee;
-    private  int flat=0;
+    private Integer flat=0;
+    private String deletename;
+    private String changeusername;
 
     public String username(){
         return username;
@@ -52,20 +54,23 @@ public class Student {
     public String committee(){
         return committee;
     }
-    public void setusername(String username){
-        this.username=username;
-    }
-    public int flat(){
+    public Integer flat(){
         return flat;
     }
     public String password(){
         return password;
     }
+    public String deletename(){return deletename;}
+    public String changeusername(){return changeusername;}
 
+
+    public void setusername(String username){
+        this.username=username;
+    }
     public void setpassword(String password){
         this.password=password;
     }
-    public void setflat(int flat){
+    public void setflat(Integer flat){
         this.flat=flat;
     }
     public void setsex(String sex){
