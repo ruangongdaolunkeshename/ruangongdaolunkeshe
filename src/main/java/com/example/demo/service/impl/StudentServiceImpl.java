@@ -70,7 +70,7 @@ public class StudentServiceImpl implements StudentService{
             s.setbirthday(student.birthday());
         if(student.branch()!=null)
             s.setbranch(student.branch());
-        if(student.username()!=null)
+        if(student.changeusername()!=null&&studentDAO.search(student.changeusername())==null)
             s.setusername(student.changeusername());
         if(student.telephone()!=null)
             s.settelephone(student.telephone());
