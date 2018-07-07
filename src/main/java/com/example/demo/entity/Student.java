@@ -26,6 +26,10 @@ public class Student {
     private Integer flat=0;
     private String deletename;
     private String changeusername;
+    //文档部分
+    private String papername;
+    private String uploadtime;
+    private String paperurl;
 
     public String username(){
         return username;
@@ -62,6 +66,9 @@ public class Student {
     }
     public String deletename(){return deletename;}
     public String changeusername(){return changeusername;}
+    public String papername(){return papername;}
+    public String uploadtime(){return uploadtime;}
+    public String paperurl(){return paperurl;}
 
 
     public void setusername(String username){
@@ -96,6 +103,13 @@ public class Student {
     }
     public void setcommitte(String committee){
         this.committee=committee;
+    }
+    public void setpapername(String papername){this.papername=papername;}
+    public void setpaperurl(String paperurl){
+        this.paperurl=paperurl;
+    }
+    public void setuploadtime(String uploadtime){
+        this.uploadtime=uploadtime;
     }
 
 }

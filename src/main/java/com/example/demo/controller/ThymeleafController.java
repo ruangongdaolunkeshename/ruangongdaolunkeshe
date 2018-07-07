@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Student;
+import com.example.demo.service.PaperService;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +22,8 @@ import java.util.List;
 
         @Autowired
         private StudentService studentService;
+        @Autowired
+        private PaperService paperService;
 
         @RequestMapping(value = "/stu/getAllStudent", method = RequestMethod.GET)
         public String getAllstudent(HttpServletRequest request){
@@ -59,6 +62,12 @@ import java.util.List;
                 return "delete";
             }
             return "not enough level, delete fall";
+        }
+
+        @RequestMapping(value = "/paper/create", method=RequestMethod.GET)
+        public String newpaper(@ModelAttribute("student")Student student){
+            paperService.newpaper(student);
+            return "created";
         }
     }
 

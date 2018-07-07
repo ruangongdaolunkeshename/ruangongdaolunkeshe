@@ -28,4 +28,16 @@ public interface StudentDAO {
     @Delete(value="DELETE FROM student WHERE student.username=#{username}")
     void delete(String username);
 
+    @Select(value="SELECT student.papername FROM student WHERE student.username=#{username}")
+    String getpapername(String papername);
+
+    @Select(value="SELECT student.uploadtime FROM student WHERE student.username=#{username}")
+    String getuploadtime(String uploadtime);
+
+    @Select(value="SELECT student.paperurl FROM student WHERE student.username=#{username}")
+    String getpaperurl(String paperurl);
+
+    @Insert(value="INSERT INTO student(student.`password`,student.`username`,student.`sex`,student.`name`,student.`birthday`,student.`address`,student.`telephone`,student.`people`,student.`branch`,student.`committee`,student.`flat`,student.`papername`,student.`uploadtime`,student.`paperurl`)\n" + "VALUE(#{password},#{username},#{sex},#{name},#{birthday},#{address},#{telephone},#{people},#{branch},#{committee},#{flat},#{papername},#{uploadtime},#{paperurl})")
+    void updatepaper(Student student);
+
 }

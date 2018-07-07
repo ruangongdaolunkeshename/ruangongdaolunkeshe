@@ -21,13 +21,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 --  Table structure for `student`
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student` (`username` varchar(100) NOT NULL ,`sex` varchar(100) NOT NULL ,`name` varchar(100) NOT NULL ,`address` varchar(100),`birthday` varchar(100),`telephone` varchar(100),`people` varchar(100) NOT NULL ,`branch` varchar(100),`committee` varchar(100), `password` varchar(100) NOT NULL ,`flat` Integer(2) DEFAULT '0');
+CREATE TABLE `student` (`username` varchar(100) NOT NULL ,`sex` varchar(100) NOT NULL ,`name` varchar(100) NOT NULL ,`address` varchar(100),`birthday` varchar(100),`telephone` varchar(100),`people` varchar(100) NOT NULL ,`branch` varchar(100),`committee` varchar(100), `password` varchar(100) NOT NULL ,`flat` Integer(2) DEFAULT '0',`papername` varchar(100),`uploadtime` varchar(100),`paperurl` varchar(100));
 
 -- ----------------------------
 --  Records of `student`
 -- ----------------------------
 BEGIN;
-INSERT INTO `student` VALUES ('1', 'man', '张', 'bj-chaoyang','1997-1-1','18511111111','jack','A-part','ABC','123456','0'), ('2', 'man', '李四', 'bj-chaoyang','1997-10-2','18522222222','jack','C-part','ABC','123456','0');
+INSERT INTO `student` VALUES ('1', 'man', '张', 'bj-chaoyang','1997-1-1','18511111111','jack','A-part','ABC','123456','0','','',''), ('2', 'man', '李四', 'bj-chaoyang','1997-10-2','18522222222','jack','C-part','ABC','123456','0','','','');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
