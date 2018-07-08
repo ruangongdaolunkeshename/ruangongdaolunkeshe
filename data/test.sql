@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 --  Table structure for `student`
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student` (`username` varchar(100) NOT NULL ,`sex` varchar(100) NOT NULL ,`name` varchar(100) NOT NULL ,`address` varchar(100),`birthday` varchar(100),`telephone` varchar(100),`people` varchar(100) NOT NULL ,`branch` varchar(100),`committe` varchar(100), `password` varchar(100) NOT NULL ,`flat` Integer(2) DEFAULT '0');
+CREATE TABLE `student` (`username` varchar(100) NOT NULL ,`sex` varchar(100) NOT NULL ,`name` varchar(100) NOT NULL ,`address` varchar(100),`birthday` varchar(100),`telephone` varchar(100),`people` varchar(100) NOT NULL ,`branch` varchar(100),`committee` varchar(100), `password` varchar(100) NOT NULL ,`flat` Integer(2) DEFAULT '0');
 
 -- ----------------------------
 --  Records of `student`
