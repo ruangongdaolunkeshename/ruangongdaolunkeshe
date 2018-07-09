@@ -14,7 +14,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -31,7 +31,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="/in/index" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -62,7 +62,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -78,7 +78,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -241,22 +241,14 @@
         <div class="card-header">
           <h3 class="card-title">提案列表</h3>
           <div class="card-tools">
+            <form id="iform" th:action="@{/out/ppsd}" th:method="get" th:object="${proposal}">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <form id="iform" th:action="@{/out/ppsd}" th:method="get" th:object="${Proposal}">
-                <table>
-                  <tr>
-                    <td>
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="编号查找"th:field="*{Id}"/>
-                    </td>
-                    <td>
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </form>
+              <input type="text" name="table_search" class="form-control float-right" placeholder="编号查找"th:field="*{Id}"/>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </div>
             </div>
+            </form>
           </div>
         </div>
         <!-- /.card-header -->
@@ -270,7 +262,7 @@
               <th>反对数</th>
             </tr>
 
-            <tr th:each="s,iterStat : ${Proposals}" th:class="${iterStat.odd}? 'odd'">
+            <tr th:each="s,iterStat : ${proposals}" th:class="${iterStat.odd}? 'odd'">
                   <td th:text=" ${s.getId()}"></td>
               　　<td th:text=" ${s.getPName()}"></td>
               　　<td th:text=" ${s.getAName()}"></td>

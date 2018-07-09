@@ -15,6 +15,7 @@ public interface StudentService {
     List<Student> getAllStudent();
     List<Proposal>getAllProposal();
     Boolean saveStudent(Student student);
+    Boolean saveProposal(Proposal proposal);
     Student searchstudent(String username);
     String searchstudent_Name(String ID);//通过文档的ID搜索作者姓名
     Proposal searchproposal_Prop(String ID);//通过文档的ID搜索文档

@@ -37,6 +37,13 @@ public class StudentServiceImpl implements StudentService{
         return true;
     }
 
+    //测试：插入文档
+    @Override
+    public Boolean saveProposal(Proposal proposal){
+        studentDAO.insert_proposal(proposal);
+        return true;
+    }
+
     @Override
     public int compareStudentpassword(Student student){
         if(student.password().equals(studentDAO.search(student.username()).password()))

@@ -23,6 +23,10 @@ public interface StudentDAO {
     @Insert(value="INSERT INTO student(student.`password`,student.`username`,student.`sex`,student.`name`,student.`birthday`,student.`address`,student.`telephone`,student.`people`,student.`branch`,student.`committee`,student.`flat`)\n" + "VALUE(#{password},#{username},#{sex},#{name},#{birthday},#{address},#{telephone},#{people},#{branch},#{committee},#{flat})")
     int insert(Student student);
 
+    //测试：插入文档
+    @Insert(value="INSERT INTO proposal(proposal.`PName`,proposal.`AName`,proposal.`TNum`,proposal.`FNum`,proposal.`Time`)\n" + "VALUE(#{PName},#{AName},#{TNum},#{FNum},#{Time})")
+    int insert_proposal(Proposal proposal);
+
     @Select(value="SELECT * FROM student WHERE student.username=#{username}")
     Student search(String username);
 
