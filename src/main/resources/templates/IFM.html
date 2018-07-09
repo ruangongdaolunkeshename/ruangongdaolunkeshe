@@ -5,7 +5,8 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,9 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>文档管理系统</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -35,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index" class="nav-link">主页</a>                            <!--index 返回主页-->
+        <a href="#" class="nav-link">主页</a>                            <!--index 返回主页-->
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">联系我们</a>
@@ -66,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -82,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -98,7 +99,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -156,7 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">文档管理系统</span>
     </a>
@@ -166,10 +167,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="login111" class="d-block" style="font-size:20px;"><b>用户</b></a>
+          <a href="#" class="d-block" style="font-size:20px;"><b>管理者用户</b></a>
           <a class="d-block" href="#" style="font-size:12px;color:yellow;">注销</a>
 
         </div>
@@ -184,13 +185,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
-                首页
+                写者功能
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="PPS" class="nav-link active">
+                <a href="in/pps" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>提案查询</p>
                 </a>
@@ -198,30 +199,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
               <li class="nav-item">
-                <a href="PPW" class="nav-link">
+                <a href="/in/ppw" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>提案编制</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="NMS" class="nav-link">
+                <a href="/in/nms" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>规范查询</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="NMW" class="nav-link">
+                <a href="/in/nmw" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>规范编制</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="IFM" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>信息维护</p>
                 </a>
               </li>
 
@@ -237,24 +231,79 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="IDM" class="nav-link active">
+                <a href="/in/idm" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>身份管理</p>
                 </a>
               </li>
 
 
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fa fa-dashboard"></i>
+                  <p>
+                    提案审批
+                    <i class="right fa fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/in/ppr1" class="nav-link">
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>推荐</p>
+                    </a>
+                  </li>
+
+
+                  <li class="nav-item">
+                    <a href="/in/ppr2" class="nav-link">
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>备案</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <p>    </p>
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>立案</p>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+
               <li class="nav-item">
-                <a href="PPR" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>提案审批</p>
+                  <p>启动任务</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="STT" class="nav-link">
+                <a href="/in/ifm" class="nav-link active">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>启动任务</p>
+                  <p>信息维护</p>
                 </a>
               </li>
 
@@ -304,51 +353,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="card-body table-responsive p-0">
           <table class="table table-hover">
             <tr>
-              <th>序号</th>
+              <th>ID</th>
+              <th>昵称</th>
+              <th>性别</th>
               <th>姓名</th>
-              <th>单位</th>
-              <th>职务</th>
-              <th>联系电话</th>
-              <th>邮箱</th>
-              <th>微信</th>
+              <th>地址</th>
+              <th>出生日期</th>
+              <th>联系方式</th>
+              <th>推荐人</th>
+              <th>行业分会</th>
+              <th>委员会</th>
+              <th>密码</th>
             </tr>
-            <tr>
-              <td>183</td>
-              <td><a href="#">John Doe</a></td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-success">Approved</span></td>
-              <td>123022554575</td>
-              <td>123022554575</td>
-              <td>123022554575</td>
-            </tr>
-            <tr>
-              <td>219</td>
-              <td><a href="#">Alexander Pierce</a></td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-warning">Pending</span></td>
-              <td>123022554575</td>
-              <td>123022554575</td>
-              <td>123022554575</td>
-            </tr>
-            <tr>
-              <td>657</td>
-              <td><a href="#">Bob Doe</a></td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-primary">Approved</span></td>
-              <td>123022554575</td>
-              <td>123022554575</td>
-              <td>123022554575</td>
-            </tr>
-            <tr>
-              <td>175</td>
-              <td><a href="#">Mike Doe</a></td>
-              <td>11-7-2014</td>
-              <td><span class="tag tag-danger">Denied</span></td>
-              <td>123022554575</td>
-              <td>123022554575</td>
-              <td>123022554575</td>
 
+            <tr th:each="s,iterStat : ${students}" th:class="${iterStat.odd}? 'odd'">
+              <td th:text=" ${s.ID()}"></td>
+              　　<td th:text=" ${s.username()}"></td>
+              　　<td th:text=" ${s.sex()}"></td>
+              　　<td th:text=" ${s.name()}"></td>
+                  <td th:text=" ${s.address()}"></td>
+                  <td th:text=" ${s.birthday()}"></td>
+              　　<td th:text=" ${s.telephone()}"></td>
+              　　<td th:text=" ${s.people()}"></td>
+                  <td th:text=" ${s.branch()}"></td>
+                   <td th:text=" ${s.committee()}"></td>
+                   <td th:text=" ${s.password()}"></td>
+              </td>
             </tr>
+
           </table>
         </div>
         <!-- /.card-body -->

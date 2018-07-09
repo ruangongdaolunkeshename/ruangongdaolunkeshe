@@ -5,6 +5,7 @@ import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
 import com.sun.org.apache.bcel.internal.generic.MONITORENTER;
 import org.mybatis.spring.annotation.MapperScan;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,15 +34,15 @@ public class StudentController{
 
     //注册
     @RequestMapping(value = "/in/reg",method = RequestMethod.GET)
-    public String indexStu(Model model){
-        model.addAttribute("student",new Student());
-        return "Register";
-    }
+        public String indexStu(Model model){
+            model.addAttribute("student",new Student());
+            return "Register";
+        }
 
-    @RequestMapping(value = "/out/reg", method= RequestMethod.GET)
-    public String Register(@ModelAttribute("student") Student student,Model model) {
-        studentService.saveStudent(student);
-        return "redirect:/in/login";
+        @RequestMapping(value = "/out/reg", method= RequestMethod.GET)
+        public String Register(@ModelAttribute("student") Student student,Model model) {
+            studentService.saveStudent(student);
+            return "redirect:/in/login";
     }
     //登录
     @RequestMapping(value = "/in/login",method = RequestMethod.GET)
@@ -75,8 +76,18 @@ public class StudentController{
     *主界面
      */
     @RequestMapping(value = "/in/index",method = RequestMethod.GET)
-    public String start(HttpServletRequest request){
+    public String Start(HttpServletRequest request){
         return "starter";
+    }
+
+    @RequestMapping(value = "/in/starterw",method = RequestMethod.GET)
+    public String StartW(HttpServletRequest request){
+        return "StarterW";
+    }
+
+    @RequestMapping(value = "/in/starterm",method = RequestMethod.GET)
+    public String StartM(HttpServletRequest request){
+        return "StarterM";
     }
 
     /*
@@ -99,9 +110,6 @@ public class StudentController{
         Proposal proposal1=studentService.searchproposal_Prop(proposal.getId());
         request.setAttribute("proposals",proposal1);
         request.setAttribute("Student",student);
-        //测试查看student和proposal内容
-        System.out.print(student);
-        System.out.print(proposal1);
         return "Ppsd";
     }
 
@@ -126,12 +134,11 @@ public class StudentController{
         model.addAttribute("proposal",new Proposal());
         return "Nms";
     }
-
     //规范编写
     @RequestMapping(value = "/in/nmw",method = RequestMethod.GET)
     public String NMW(Model model,HttpServletRequest request){
         model.addAttribute("proposal",new Proposal());
-        return "Nwm";
+        return "Nmw";
     }
     @RequestMapping(value = "out/nmw",method = RequestMethod.GET)
     public String NMW_NMS(@ModelAttribute("proposal")Proposal proposal,HttpServletRequest request){
@@ -140,12 +147,46 @@ public class StudentController{
         return "redirect:/in/nms";
     }
 
+    //信息维护
+    @RequestMapping(value = "/in/ifm",method = RequestMethod.GET)
+    public String IFM(HttpServletRequest request){
+        List<Student> list=studentService.getAllStudent();
+        request.setAttribute("students",list);
+        System.out.print(list);
+        return "Ifm";
+    }
+
     /*
-    *身份管理（需求3）
+    *管理者功能（需求3）
      */
+    //身份管理
     @RequestMapping(value = "/in/idm",method = RequestMethod.GET)
     public String IDM(HttpServletRequest request){
+        List<Student> list=studentService.getAllStudent();
+        request.setAttribute("students",list);
+
         return "Idm";
+    }
+    @RequestMapping(value = "/out/idmd",method = RequestMethod.GET)
+    public String IDMD(@ModelAttribute("students")Student student,Model model){
+        System.out.print(student.ID());
+        Student student1=studentService.searchstudent_ID(student.ID());
+        System.out.print(student1);
+        model.addAttribute("Student",student1);
+        return "Idmd";
+    }
+    //提案审批
+    @RequestMapping(value="/in/ppr1",method=RequestMethod.GET)
+    public String PPR1(Model model){
+        List<Proposal>list=studentService.getAllProposal();
+        model.addAttribute("proposals",list);
+        return "Ppr1";
+    }
+    @RequestMapping(value="/in/ppr2",method=RequestMethod.GET)
+    public String PPR2(Model model){
+        List<Proposal>list=studentService.getAllProposal();
+        model.addAttribute("proposals",list);
+        return "Ppr2";
     }
 
     /*

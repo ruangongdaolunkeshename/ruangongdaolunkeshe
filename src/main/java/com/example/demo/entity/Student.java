@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class Student {
 
+    private String ID;
     private String password;
     private String username;
     private String sex;
@@ -23,6 +24,7 @@ public class Student {
     private String branch;
     //委员会
     private String committee;
+    //权限标志
     private Integer flat=0;
     private String deletename;
     private String changeusername;
@@ -31,6 +33,7 @@ public class Student {
     private String uploadtime;
     private String paperurl;
 
+    public String ID(){return ID;}
     public String username(){
         return username;
     }

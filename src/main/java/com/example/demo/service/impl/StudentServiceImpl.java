@@ -56,6 +56,10 @@ public class StudentServiceImpl implements StudentService{
         return studentDAO.search(username);
     }
 
+    //通过用户ID搜索用户
+    @Override
+    public Student searchstudent_ID(String ID){return studentDAO.search_ID(ID);}
+
     @Override
     public String searchstudent_Name(String ID){
         return studentDAO.search_Name(ID);

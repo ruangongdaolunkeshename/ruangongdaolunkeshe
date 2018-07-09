@@ -17,6 +17,7 @@ public interface StudentService {
     Boolean saveStudent(Student student);
     Boolean saveProposal(Proposal proposal);
     Student searchstudent(String username);
+    Student searchstudent_ID(String ID);//通过用户ID搜索用户
     String searchstudent_Name(String ID);//通过文档的ID搜索作者姓名
     Proposal searchproposal_Prop(String ID);//通过文档的ID搜索文档
     int compareStudentpassword(Student student);

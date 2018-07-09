@@ -30,6 +30,10 @@ public interface StudentDAO {
     @Select(value="SELECT * FROM student WHERE student.username=#{username}")
     Student search(String username);
 
+    //测试：由ID搜索用户
+    @Select(value="SELECT * FROM student WHERE student.ID=#{ID}")
+    Student search_ID(String ID);
+
     //测试：由ID搜索文档
     @Select(value="SELECT * FROM proposal WHERE proposal.Id=#{Id}")
     Proposal search_Proposal(String Id);
