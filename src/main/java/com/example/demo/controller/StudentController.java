@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,6 +28,9 @@ public class StudentController{
 
     @Autowired
     private StudentService studentService;
+
+    public String LoginName=null;
+    public int LoginFlat=-1;
 
     /*
      *注册与登录，需求1
@@ -51,17 +55,14 @@ public class StudentController{
         return "Login";
     }
     @RequestMapping(value = "/out/login",method = RequestMethod.GET)
-    public String index(@ModelAttribute("student") Student student){
-        if (studentService.compareStudentpassword(student) == 1)
-            return "redirect:/in/index";
-        else
-            return "redirect:/in/error";
-    }
-    @RequestMapping(value = "/in/error",method = RequestMethod.GET)
-    public String Login_error(HttpServletRequest request){
+    public String index(@ModelAttribute("student") Student student,Model model){
+        LoginFlat=studentService.compareStudentpassword(student);
+        LoginName=student.username();
+        System.out.print(LoginFlat);
+        System.out.print(LoginName);
+        model.addAttribute("Flat",LoginFlat);
         return "Login_error";
     }
-
 
     /*
     *文件读写
@@ -77,10 +78,20 @@ public class StudentController{
      */
     @RequestMapping(value = "/in/index",method = RequestMethod.GET)
     public String Start(HttpServletRequest request){
+        request.setAttribute("LName",LoginName);
+        if(LoginFlat==1){return "StarterW";}
+        else if(LoginFlat==2||LoginFlat==3){return "StarterM"; }
+        else return "starter";
+    }
+
+    @RequestMapping(value = "/in/starter",method = RequestMethod.GET)
+    public String StartW(HttpServletRequest request){
+        LoginFlat=-1;
+        LoginName=null;
         return "starter";
     }
 
-    @RequestMapping(value = "/in/starterw",method = RequestMethod.GET)
+    /*@RequestMapping(value = "/in/starterw",method = RequestMethod.GET)
     public String StartW(HttpServletRequest request){
         return "StarterW";
     }
@@ -88,15 +99,16 @@ public class StudentController{
     @RequestMapping(value = "/in/starterm",method = RequestMethod.GET)
     public String StartM(HttpServletRequest request){
         return "StarterM";
-    }
+    }*/
 
     /*
     *文档管理（需求2）
      */
     //提案查询
     @RequestMapping(value = "/in/pps",method = RequestMethod.GET)
-    public String PPS(Model model){
+    public String PPS(Model model,HttpServletRequest request){
         List<Proposal> list= studentService.getAllProposal();
+        request.setAttribute("LName",LoginName);
         model.addAttribute("proposals",list);
         model.addAttribute("proposal",new Proposal());
         return "Pps";
@@ -108,8 +120,10 @@ public class StudentController{
         //由文档ID读取作者作者名称，由作者名称读取作者信息
         Student student=studentService.searchstudent(studentService.searchstudent_Name(proposal.getId()));
         Proposal proposal1=studentService.searchproposal_Prop(proposal.getId());
+
         request.setAttribute("proposals",proposal1);
         request.setAttribute("Student",student);
+        request.setAttribute("LName",LoginName);
         return "Ppsd";
     }
 
@@ -117,10 +131,12 @@ public class StudentController{
     @RequestMapping(value = "/in/ppw",method = RequestMethod.GET)
     public String PPW(Model model,HttpServletRequest request){
         model.addAttribute("proposal",new Proposal());
+        request.setAttribute("LName",LoginName);
         return "Ppw";
     }
     @RequestMapping(value = "out/ppw",method = RequestMethod.GET)
-    public String PPW_PPS(@ModelAttribute("proposal")Proposal proposal,HttpServletRequest request){
+    public String PPW_PPS(@ModelAttribute("proposal")Proposal proposal,HttpServletRequest request) throws IOException {
+        proposal.setAName(LoginName);
         studentService.saveProposal(proposal);
         //跳转到提案查询 问题：textarea提交的内容会附带<p>***</p>
         return "redirect:/in/pps";
@@ -132,16 +148,18 @@ public class StudentController{
         List<Proposal> list= studentService.getAllProposal();
         model.addAttribute("proposals",list);
         model.addAttribute("proposal",new Proposal());
+        request.setAttribute("LName",LoginName);
         return "Nms";
     }
     //规范编写
     @RequestMapping(value = "/in/nmw",method = RequestMethod.GET)
     public String NMW(Model model,HttpServletRequest request){
         model.addAttribute("proposal",new Proposal());
+        request.setAttribute("LName",LoginName);
         return "Nmw";
     }
     @RequestMapping(value = "out/nmw",method = RequestMethod.GET)
-    public String NMW_NMS(@ModelAttribute("proposal")Proposal proposal,HttpServletRequest request){
+    public String NMW_NMS(@ModelAttribute("proposal")Proposal proposal,HttpServletRequest request) throws IOException {
         studentService.saveProposal(proposal);
         //跳转到提案查询 问题：textarea提交的内容会附带<p>***</p>
         return "redirect:/in/nms";
@@ -152,7 +170,7 @@ public class StudentController{
     public String IFM(HttpServletRequest request){
         List<Student> list=studentService.getAllStudent();
         request.setAttribute("students",list);
-        System.out.print(list);
+        request.setAttribute("LName",LoginName);
         return "Ifm";
     }
 
@@ -164,28 +182,31 @@ public class StudentController{
     public String IDM(HttpServletRequest request){
         List<Student> list=studentService.getAllStudent();
         request.setAttribute("students",list);
-
+        request.setAttribute("LName",LoginName);
         return "Idm";
     }
     @RequestMapping(value = "/out/idmd",method = RequestMethod.GET)
-    public String IDMD(@ModelAttribute("students")Student student,Model model){
+    public String IDMD(@ModelAttribute("students")Student student,Model model,HttpServletRequest request){
         System.out.print(student.ID());
         Student student1=studentService.searchstudent_ID(student.ID());
         System.out.print(student1);
         model.addAttribute("Student",student1);
+        request.setAttribute("LName",LoginName);
         return "Idmd";
     }
     //提案审批
     @RequestMapping(value="/in/ppr1",method=RequestMethod.GET)
-    public String PPR1(Model model){
+    public String PPR1(Model model,HttpServletRequest request){
         List<Proposal>list=studentService.getAllProposal();
         model.addAttribute("proposals",list);
+        request.setAttribute("LName",LoginName);
         return "Ppr1";
     }
     @RequestMapping(value="/in/ppr2",method=RequestMethod.GET)
-    public String PPR2(Model model){
+    public String PPR2(Model model,HttpServletRequest request){
         List<Proposal>list=studentService.getAllProposal();
         model.addAttribute("proposals",list);
+        request.setAttribute("LName",LoginName);
         return "Ppr2";
     }
 

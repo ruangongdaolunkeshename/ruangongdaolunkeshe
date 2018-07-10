@@ -7,6 +7,11 @@ import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,16 +44,28 @@ public class StudentServiceImpl implements StudentService{
 
     //测试：插入文档
     @Override
-    public Boolean saveProposal(Proposal proposal){
+    public Boolean saveProposal(Proposal proposal) throws IOException {
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+        proposal.setTime(df.format(new Date()));
         studentDAO.insert_proposal(proposal);
+        Proposal proposal1=studentDAO.search_ProposalByPName(proposal.getPName());
+        String url="src/main/resources/static/txt/ppsd/"+proposal1.getId()+".txt";
+        File file=new File(url);
+        if(!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter wr=new FileWriter(file);
+        wr.write(proposal.getContent());
+        wr.flush();
+        wr.close();
         return true;
     }
 
     @Override
     public int compareStudentpassword(Student student){
         if(student.password().equals(studentDAO.search(student.username()).password()))
-            return 1;
-        return 0;
+            return searchflat(student.username());
+        return -1;
     }
 
     @Override
@@ -78,7 +95,7 @@ public class StudentServiceImpl implements StudentService{
             s.setpassword(student.password());
         if(student.committee()!=null)
             s.setcommitte(student.committee());
-        if(student.flat()!=null)
+        if(student.flat()!=0)
             s.setflat(student.flat());
         if(student.people()!=null)
             s.setpeople(student.people());

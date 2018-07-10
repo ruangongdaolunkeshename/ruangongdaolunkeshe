@@ -24,8 +24,8 @@ public class Student {
     private String branch;
     //委员会
     private String committee;
-    //权限标志
-    private Integer flat=0;
+    //权限标志 -1密码不匹配，0注册未审核，1写者，2管理者，3管理者
+    private int flat=0;
     private String deletename;
     private String changeusername;
     //文档部分
@@ -61,7 +61,7 @@ public class Student {
     public String committee(){
         return committee;
     }
-    public Integer flat(){
+    public int flat(){
         return flat;
     }
     public String password(){

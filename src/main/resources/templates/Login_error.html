@@ -5,9 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<script>
-    alert('登陆失败');
-    window.location.href = "/in/login";
+<script th:inline="javascript">
+    var fla=[[${Flat}]];
+    document.write(fla);
+    if(fla==0){
+        alert('用户申请信息未确认，请等待管理员审核');
+        window.location.href = "/in/index";
+    }
+    else if(fla==1){
+        alert('登录成功，欢迎写者');
+        window.location.href = "/in/index";
+    }
+    else if(fla==2){
+        alert('登录成功，欢迎管理者');
+        window.location.href = "/in/index";
+    }
+    else if(fla==3){
+        alert('登录成功，欢迎管理者');
+        window.location.href = "/in/index";
+    }
+    else{
+        alert('登陆失败，请检查用户名和密码是否错误');
+        window.location.href = "/in/login";
+    }
 </script>
+
 </body>
 </html>

@@ -38,6 +38,10 @@ public interface StudentDAO {
     @Select(value="SELECT * FROM proposal WHERE proposal.Id=#{Id}")
     Proposal search_Proposal(String Id);
 
+    //测试：由文档名搜索文档
+    @Select(value="SELECT * FROM proposal WHERE proposal.PName=#{pname}")
+    Proposal search_ProposalByPName(String pname);
+
     //测试：由文档ID搜索作者(新建proposal表）
     @Select(value="SELECT AName FROM proposal WHERE proposal.Id=#{Id}")
     String search_Name(String Id);
