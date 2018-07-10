@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script th:inline="javascript">
+    var flat=[[${Flat}]];
+    document.write(flat);
+    if(flat==0){
+        alert('用户申请信息未确认，请等待管理员审核');
+        window.location.href = "/in/index";
+    }
+    else if(flat==1){
+        alert('登录成功，欢迎写者');
+        window.location.href = "/in/index";
+    }
+    else if(flat==2){
+        alert('登录成功，欢迎管理者');
+        window.location.href = "/in/index";
+    }
+    else if(flat==3){
+        alert('登录成功，欢迎管理者');
+        window.location.href = "/in/index";
+    }
+    else{
+        alert('登陆失败，请检查用户名和密码是否错误');
+        window.location.href = "/in/index";
+    }
+</script>
+</body>
+</html>
