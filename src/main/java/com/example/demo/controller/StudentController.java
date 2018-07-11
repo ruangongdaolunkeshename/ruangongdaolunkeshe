@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.synth.SynthEditorPaneUI;
 import java.io.IOException;
 import java.util.List;
 
@@ -116,11 +118,11 @@ public class StudentController{
 
     //提案管理
     @RequestMapping(value = "/out/ppsd",method = RequestMethod.GET)
-    public String PPSD(@ModelAttribute("Proposal") Proposal proposal,Model model,HttpServletRequest request){
+    public String PPSD(@ModelAttribute("Proposal") Proposal proposal,Model model,HttpServletRequest request) throws IOException {
         //由文档ID读取作者作者名称，由作者名称读取作者信息
         Student student=studentService.searchstudent(studentService.searchstudent_Name(proposal.getId()));
         Proposal proposal1=studentService.searchproposal_Prop(proposal.getId());
-
+        proposal1.setContent(studentService.getContent(proposal.getId()));
         request.setAttribute("proposals",proposal1);
         request.setAttribute("Student",student);
         request.setAttribute("LName",LoginName);
@@ -195,19 +197,117 @@ public class StudentController{
         return "Idmd";
     }
     //提案审批
+    //推荐
     @RequestMapping(value="/in/ppr1",method=RequestMethod.GET)
     public String PPR1(Model model,HttpServletRequest request){
-        List<Proposal>list=studentService.getAllProposal();
+        List<Proposal>list=studentService.getAllProposalByFlat("1");
         model.addAttribute("proposals",list);
         request.setAttribute("LName",LoginName);
         return "Ppr1";
     }
+    @RequestMapping(value="/out/ppr1",method=RequestMethod.GET)
+    public String PPR1_OUT(@RequestParam(value="boxes",required = false,defaultValue = "0") String [] Id,
+                           @RequestParam(value="allbox",required = false,defaultValue = "0") String  All,
+                           @RequestParam(value="table_search",required = false,defaultValue = "0") String  SearchId){
+        if(All.equals("1")){//当全选，升级所有文档为2级;
+            studentService.UpdateProposalAllFlat("2");
+            return "redirect:/in/ppr1";
+        }
+        if(Id[0].equals("0"))//一个都没有选时重回界面
+            return "redirect:/in/ppr1";
+        for(String s:Id){//升级选中文档为2级
+            studentService.UpdateProposalFlat(s,"2");
+        }
+
+        return "redirect:/in/ppr1";
+    }
+    //备案
     @RequestMapping(value="/in/ppr2",method=RequestMethod.GET)
     public String PPR2(Model model,HttpServletRequest request){
-        List<Proposal>list=studentService.getAllProposal();
+        List<Proposal>list=studentService.getAllProposalByFlat("2");
         model.addAttribute("proposals",list);
         request.setAttribute("LName",LoginName);
         return "Ppr2";
+    }
+    @RequestMapping(value = "/out/ppr2",method = RequestMethod.GET)
+    public String PPR2_OUT(@RequestParam(value="boxes",required = false,defaultValue="0")String[] Id,
+                           @RequestParam(value="allbox",required = false,defaultValue = "0") String  All,
+                           @RequestParam(value="table_search",required = false,defaultValue = "0") String  SearchId){
+        if(All.equals("1")){//当全选，升级所有文档为2级
+            System.out.print("备案");
+            studentService.UpdateProposalAllFlat("3");
+            return "redirect:/in/ppr2";
+        }
+        if(Id[0].equals("0"))//一个都没有选时重回界面
+            return "redirect:/in/ppr2";
+        for(String s:Id){//升级选中文档为2级
+            studentService.UpdateProposalFlat(s,"3");
+        }
+        System.out.print(All);
+        return "redirect:/in/ppr2";
+    }
+    //立案
+    @RequestMapping(value="/in/ppr3",method=RequestMethod.GET)
+    public String PPR3(Model model,HttpServletRequest request){
+        List<Proposal>list=studentService.getAllProposalByFlat("3");
+        model.addAttribute("proposals",list);
+        request.setAttribute("LName",LoginName);
+        return "Ppr3";
+    }
+    @RequestMapping(value = "/out/ppr3",method = RequestMethod.GET)
+    public String PPR3_OUT(@RequestParam(value="boxes",required = false,defaultValue="0")String[] Id,
+                           @RequestParam(value="allbox",required = false,defaultValue = "0") String  All,
+                           @RequestParam(value="table_search",required = false,defaultValue = "0") String  SearchId){
+        if(All.equals("1")){//当全选，升级所有文档为2级
+            studentService.UpdateProposalAllFlat("4");
+        }
+        if(Id[0].equals("0"))//一个都没有选时重回界面
+            return "redirect:/in/ppr3";
+
+        for(String s:Id){//升级选中文档为2级
+            studentService.UpdateProposalFlat(s,"4");
+        }
+        return "redirect:/in/ppr3";
+    }
+
+
+    //启动任务
+    @RequestMapping(value="/in/ppr4",method=RequestMethod.GET)
+    public String PPR4(Model model,HttpServletRequest request){
+        List<Proposal>list=studentService.getAllProposalByFlat("4");
+        model.addAttribute("proposals",list);
+        request.setAttribute("LName",LoginName);
+        return "Ppr4";
+    }
+    @RequestMapping(value = "/out/ppr4",method = RequestMethod.GET)
+    public String PPR4_OUT(@RequestParam(value="boxes",required = false,defaultValue="0")String[] Id,
+                           @RequestParam(value="allbox",required = false,defaultValue = "0") String  All,
+                           @RequestParam(value="sub1",required = false,defaultValue = "0") String  sub1,
+                           @RequestParam(value="sub2",required = false,defaultValue = "0") String  sub2,
+                           @RequestParam(value="table_search",required = false,defaultValue = "0") String  SearchId){
+        if(sub1.equals("1")){
+            if(All.equals("1")){//当全选，升级所有文档为2级
+                studentService.UpdateProposalAllFlat("1");
+                return "redirect:/in/ppr4";
+            }
+            if(Id[0].equals("0"))//一个都没有选时重回界面
+                return "redirect:/in/ppr4";
+            for(String s:Id){//升级选中文档为2级
+                studentService.UpdateProposalFlat(s,"1");
+            };
+        }
+        else if(sub2.equals("1")){
+            if(All.equals("1")){//当全选，升级所有文档为2级
+                studentService.deleteAllProposal("4");
+                return "redirect:/in/ppr4";
+            }
+            if(Id[0].equals("0"))//一个都没有选时重回界面
+                return "redirect:/in/ppr4";
+            for(String s:Id){//升级选中文档为2级
+                studentService.deleteProposal(s);
+            }
+        }
+        return "redirect:/in/ppr4";
     }
 
     /*

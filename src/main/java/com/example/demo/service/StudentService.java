@@ -15,6 +15,9 @@ import java.util.List;
 public interface StudentService {
     List<Student> getAllStudent();
     List<Proposal>getAllProposal();
+    List<Proposal>getAllProposalByFlat(String flat);
+    boolean UpdateProposalFlat(String Id,String Flat);//升级文档等级
+    boolean UpdateProposalAllFlat(String Flat);//升级所有文档等级
     Boolean saveStudent(Student student);
     Boolean saveProposal(Proposal proposal) throws IOException;
     Student searchstudent(String username);
@@ -24,6 +27,10 @@ public interface StudentService {
     int compareStudentpassword(Student student);
     void updateStudent(Student student);
     void deleteStudent(String username);
+    void deleteProposal(String Id);
+    void deleteAllProposal(String Flat);
     int searchflat(String username);
+
+    String getContent(String Id) throws IOException;//获取文档内容
 
 }

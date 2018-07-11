@@ -7,9 +7,7 @@ import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +29,26 @@ public class StudentServiceImpl implements StudentService{
         return studentDAO.getAllStudent();
     }
 
+    @Override
     public List<Proposal>getAllProposal(){return studentDAO.getAllProposal();}
+
+    @Override
+    public List<Proposal> getAllProposalByFlat(String flat) {
+        return studentDAO.getAllProposalByFlat(flat);
+    }
+
+    @Override
+    public boolean UpdateProposalFlat(String Id,String Flat){
+        studentDAO.updateProposalFlat(Id,Flat);
+        return true;
+    }
+
+    @Override
+    public boolean UpdateProposalAllFlat(String Flat) {
+
+        return studentDAO.updateProposalAllFlat(Flat);
+    }
+
 
     @Override
     public Boolean saveStudent(Student student){
@@ -122,8 +139,37 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    public void deleteProposal(String Id) {
+        studentDAO.deleteProposal(Id);
+    }
+
+    @Override
+    public void deleteAllProposal(String Flat) {
+        studentDAO.deleteAllProposal(Flat);
+    }
+
+    @Override
     public int searchflat(String username){
         return studentDAO.searchflat(username);
+    }
+
+    @Override
+    public String getContent(String Id) throws IOException {
+        String url="src/main/resources/static/txt/ppsd/"+Id+".txt";
+        String line="";
+        String content="";
+        File file=new File(url);
+        if(!file.exists()) {
+            file.createNewFile();
+        }
+
+        BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+        while(line!=null){
+            content+=line;
+            line=br.readLine();
+        }
+        System.out.print(content);
+        return content;
     }
 
 }

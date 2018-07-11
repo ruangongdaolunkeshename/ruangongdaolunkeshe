@@ -11,6 +11,7 @@ public class Proposal {
     private int FNum; //反对数
     private String Time;//截止日期
     private String Content;//内容
+    private String Flat;
 
     public String getId(){ return  Id;}
     public String getPName(){return PName;}
@@ -19,9 +20,11 @@ public class Proposal {
     public int getFNum(){return FNum;}
     public String getTime(){return Time;}
     public String getContent(){return Content;}
+    public String getFlat(){return Flat;}
 
     public void setAName(String AName){this.AName=AName;}
     public void setTime(String Time){this.Time=Time;}
+    public void setContent(String Content){this.Content=Content;}
 
-    public Proposal(){TNum=0;FNum=0;};
+    public Proposal(){TNum=0;FNum=0;Flat="1";};
 }
