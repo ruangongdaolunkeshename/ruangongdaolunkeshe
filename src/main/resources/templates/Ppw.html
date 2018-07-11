@@ -276,7 +276,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="mb-3">
                 <textarea id="editor1" name="editor1" style="width: 100%" th:field="*{PName}"></textarea>
               </div>
-
             </div>
           </div>
           <!-- /.card -->
@@ -364,14 +363,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    ClassicEditor
-      .create(document.querySelector('#editor1'))
-      .then(function (editor) {
-        // The editor instance
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
+
 
     // bootstrap WYSIHTML5 - text editor
 

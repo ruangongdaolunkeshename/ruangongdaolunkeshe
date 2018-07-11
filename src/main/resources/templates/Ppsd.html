@@ -166,7 +166,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="login111" class="d-block" style="font-size:20px;"><b>写者用户</b></a>
+          <a href="/in/index" th:text="${LName}" class="d-block" style="font-size:20px;"><b>写者用户</b></a>
           <a class="d-block" href="/in/index" style="font-size:12px;color:yellow;">注销</a>
         </div>
       </div>
@@ -346,10 +346,15 @@
                         </tr>
                         <tr>
                           <td>提案内容:</td>
-                          <td><div id="myDiv"></div></td>
+                          <td th:text=" ${proposals.getContent()}"></td>
+
+                          <!--
+                          <div id="myDiv"></div>
                           <script th:inline="javascript">
                               var xmlhttp;
                               var path=[[${proposals.getId()}]]
+                              var path1="/txt/ppsd/"+path+".txt";
+                              document.write(path1);
                               if (window.XMLHttpRequest)
                               {
                                   //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -367,10 +372,10 @@
                                       document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
                                   }
                               }
-                              xmlhttp.open("GET","/txt/ppsd/"+path+".txt",true);
+                              xmlhttp.open("GET",path1,true);
                               xmlhttp.send();
-
                           </script>
+                          -->
                         </tr>
                       </table>
 
